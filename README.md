@@ -73,7 +73,7 @@ This report includes insights, KPIs, and hard-level SQL queries solved using rea
 
 ## Project Structure
 
-### 1. Database Setup
+### Database Setup
 1. **Database Creation**: The project starts by creating a database named `ola`.
 2. **Table Creation**: A table named `ola` is created to store the ola data analysis data. The table structure includes columns for date date, time, booking_id, booking_status, customer_id, vehicle_type, pickup_location, drop_location, v_tat, c_tat, canceled_rides_by_customer, canceled_rides_by_driver, incomplete_rides, incomplete_rides_reason, booking_value, payment_method, ride_distance, driver_ratings and customer_rating.
 ```sql
@@ -431,5 +431,6 @@ This project is part of my portfolio, showcasing the SQL skills essential for da
 - **Contact**: 9911568488
 
 Thank you for your support, and I look forward to connecting with you!
+
 
 ***END OF THE PROJECT***
