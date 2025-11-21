@@ -1,5 +1,81 @@
-# Ola_data_analyst
+# Ola Ride-Data Analysis Using SQL
 
+## Project Overview
+**Project Title**: OLA data analysis project  
+**Level**: Beginner to intermediate
+**Database**: `ola` 
+
+The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries.
+
+## Objectives
+
+This project analyzes a ride-hailing dataset (similar to Uber/Ola) using SQL.
+The dataset includes information about:
+	- Bookings  
+	- Customers  
+	- Drivers  
+	- Ride distances  
+	- Ratings  
+	- Payment data  
+	- Cancellations  
+	- TAT (Turnaround Time)  
+	- Ride outcomes  
+	
+The goal of the project is to demonstrate proficiency in SQL analysis, including:   
+
+✔ Joins  
+✔ Window functions  
+✔ Aggregations  
+✔ CTEs  
+✔ Subqueries  
+✔ Ranking functions  
+✔ KPI creation  
+✔ Data quality checks  
+
+This report includes insights, KPIs, and hard-level SQL queries solved using real-world analytical thinking.
+
+## Dataset Schema
+
+| Column Name                | Description                       |
+| -------------------------- | --------------------------------- |
+| Date                       | Booking date                      |
+| Time                       | Booking time                      |
+| Booking_ID                 | Unique ride ID                    |
+| Booking_Status             | Completed / Canceled / Incomplete |
+| Customer_ID                | Unique customer identifier        |
+| Vehicle_Type               | Mini, Sedan, SUV, Bike, etc.      |
+| Pickup_Location            | Start point                       |
+| Drop_Location              | Destination                       |
+| V_TAT                      | Vendor estimated turnaround time  |
+| C_TAT                      | Actual customer turnaround time   |
+| Canceled_Rides_by_Customer | Flag                              |
+| Canceled_Rides_by_Driver   | Flag                              |
+| Incomplete_Rides           | Flag                              |
+| Incomplete_Rides_Reason    | Reason for incompletion           |
+| Booking_Value              | Fare amount                       |
+| Payment_Method             | UPI / Cash / Card                 |
+| Ride_Distance              | Ride distance in km               |
+| Driver_Ratings             | Rating given to driver            |
+| Customer_Rating            | Rating given by driver            |
+
+
+## Key Metrics (KPIs)
+
+| KPI               | Description          |               |   |
+| ----------------- | -------------------- | ------------- | - |
+| Total Bookings    | Number of rides      |               |   |
+| Completion Rate   | Completed / Total    |               |   |
+| Revenue           | Sum of booking value |               |   |
+| Cancellation Rate | Cancelled / Total    |               |   |
+| Avg Ride Distance | Mean km              |               |   |
+| Avg TAT Deviation |                      | V_TAT – C_TAT |   |
+| Avg Driver Rating | Overall performance  |               |   |
+
+## Project Structure
+
+### 1. Database Setup
+1. **Database Creation**: The project starts by creating a database named `ola`.
+2. **Table Creation**: A table named `ola` is created to store the ola data analysis data. The table structure includes columns for date date, time, booking_id, booking_status, customer_id, vehicle_type, pickup_location, drop_location, v_tat, c_tat, canceled_rides_by_customer, canceled_rides_by_driver, incomplete_rides, incomplete_rides_reason, booking_value, payment_method, ride_distance, driver_ratings and customer_rating.
 ```sql
 DROP DATABASE ola;
 DROP TABLE IF EXISTS ola;
@@ -27,7 +103,9 @@ CREATE TABLE ola (
 );
 ```
 
-## BEGINNER LEVEL
+## Data Exploration
+
+### BEGINNER LEVEL
 
 1.**Retrieve all successful bookings**.
 ```sql
@@ -104,7 +182,7 @@ FROM ola
 WHERE incomplete_rides = 'Yes';
 ```
 
-## MEDIUM LEVEL QUERIES
+### MEDIUM LEVEL QUERIES
 
 1.**Count of rides canceled by customer vs driver**
 ```sql
@@ -171,7 +249,7 @@ SELECT
 FROM ola;
 ```
 
-## INTERMEDIATE LEVEL
+### INTERMEDIATE LEVEL
 
 1.**Find the top customer per day by booking value**
 ```sql
@@ -321,3 +399,37 @@ FROM ranked
 WHERE pct_rank >= 0.95;
 -- top 5% high-value rides
 ```
+
+## Insights Summary
+✔ High-value customers contribute a majority of revenue (Pareto rule applies).  
+✔ Certain pickup→drop routes have significantly higher demand.  
+✔ Cancellations are heavily driven by customer behavior, not drivers.  
+✔ TAT deviations strongly correlate with incomplete rides.  
+✔ Drivers with consistently high ratings form a very small % (top tier).  
+✔ Customer ratings show high variability → strong opportunity for service improvement.  
+
+## Tools Used
+	- SQL (PostgreSQL / MySQL / SQL Server compatible)
+	- GitHub
+
+## Reports
+A comprehensive SQL-driven analysis of ride-hailing data that highlights key metrics such as revenue, cancellations, TAT deviations, and customer/driver performance. The project showcases advanced analytical SQL skills through real-world problem-solving and data insights.
+**Sales Summary**: A detailed report summarizing total sales, customer demographics, and vehicle performance.
+**Trend Analysis**: Insights into sales trends across different months and vehicles.
+**Customer Insights**: Reports on top customers and unique customer counts per category.
+
+## Conclusion
+The analysis shows that a small group of high-value customers drives most revenue, customer cancellations dominate overall failures, and TAT deviations strongly impact ride completion. Insights from the data highlight clear opportunities to improve service efficiency and customer experience.
+
+## Author - Koushik Das
+This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
+
+## About Me
+- **Name**: Koushik Das
+- **Education**: B.Sc. Physics (Hons.)
+- **LinkedIn**: [click here to redirect to my linked account](https://www.linkedin.com/in/koushik-das-0047b836a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+- **Contact**: 9911568488
+
+Thank you for your support, and I look forward to connecting with you!
+
+***END OF THE PROJECT***
