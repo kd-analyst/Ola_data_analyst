@@ -2,7 +2,7 @@
 
 ## Project Overview
 **Project Title**: OLA data analysis project  
-**Level**: Beginner to intermediate
+**Level**: Beginner to intermediate  
 **Database**: `ola` 
 
 The project involves setting up a retail sales database, performing exploratory data analysis (EDA), and answering specific business questions through SQL queries.
@@ -11,16 +11,16 @@ The project involves setting up a retail sales database, performing exploratory 
 
 This project analyzes a ride-hailing dataset (similar to Uber/Ola) using SQL.
 The dataset includes information about:
-	- Bookings  
-	- Customers  
-	- Drivers  
-	- Ride distances  
-	- Ratings  
-	- Payment data  
-	- Cancellations  
-	- TAT (Turnaround Time)  
-	- Ride outcomes  
-	
+		- Bookings  
+		- Customers  
+		- Drivers  
+		- Ride distances  
+		- Ratings  
+		- Payment data  
+		- Cancellations  
+		- TAT (Turnaround Time)  
+		- Ride outcomes  
+		
 The goal of the project is to demonstrate proficiency in SQL analysis, including:   
 
 ✔ Joins  
@@ -61,15 +61,15 @@ This report includes insights, KPIs, and hard-level SQL queries solved using rea
 
 ## Key Metrics (KPIs)
 
-| KPI               | Description          |               |   |
-| ----------------- | -------------------- | ------------- | - |
-| Total Bookings    | Number of rides      |               |   |
-| Completion Rate   | Completed / Total    |               |   |
-| Revenue           | Sum of booking value |               |   |
-| Cancellation Rate | Cancelled / Total    |               |   |
-| Avg Ride Distance | Mean km              |               |   |
-| Avg TAT Deviation |                      | V_TAT – C_TAT |   |
-| Avg Driver Rating | Overall performance  |               |   |
+| KPI               | Description          |               |
+| ----------------- | -------------------- | ------------- |
+| Total Bookings    | Number of rides      |               |
+| Completion Rate   | Completed / Total    |               |
+| Revenue           | Sum of booking value |               |
+| Cancellation Rate | Cancelled / Total    |               |
+| Avg Ride Distance | Mean km              |               |
+| Avg TAT Deviation |                      | V_TAT – C_TAT |
+| Avg Driver Rating | Overall performance  |               |
 
 ## Project Structure
 
@@ -107,12 +107,12 @@ CREATE TABLE ola (
 
 ### BEGINNER LEVEL
 
-1.**Retrieve all successful bookings**.
+**1.Retrieve all successful bookings**.
 ```sql
 	SELECT * FROM ola
 	WHERE booking_status = 'Success';
 ```
-2.**Find the average ride distance for each vehicle type.**
+**2.Find the average ride distance for each vehicle type.**
 ```sql
 SELECT 
 	vehicle_type, 
@@ -121,13 +121,13 @@ FROM ola
 GROUP BY vehicle_type
 ORDER BY avg_ride_distance DESC;
 ```
-3.**Get the total number of cancelled rides by customers.**
+**3.Get the total number of cancelled rides by customers.**
 ```sql
 SELECT COUNT(*)
 FROM ola
 WHERE booking_status = 'Canceled by Customer';
 ```
-4.**List the top 5 customers who booked the highest number of rides.**
+**4.List the top 5 customers who booked the highest number of rides.**
 ```sql
 SELECT customer_id, COUNT(booking_id) AS no_of_rides
 FROM ola
@@ -137,14 +137,14 @@ ORDER BY no_of_rides DESC
 LIMIT 5;
 ```
 
-5.**Get the number of rides cancelled by drivers due to personal and car-related issues.**
+**5.Get the number of rides cancelled by drivers due to personal and car-related issues.**
 ```sql
 SELECT COUNT(*) FROM ola
 WHERE 
 	booking_status = 'Canceled by Driver'
 	AND canceled_rides_by_driver = 'Personal & Car related issue';
 ```
-6.**Find the maximum and minimum driver ratings for Prime Sedan bookings.**
+**6.Find the maximum and minimum driver ratings for Prime Sedan bookings.**
 ```sql
 SELECT 
 	MAX(driver_ratings) AS maximum_rating,
@@ -152,12 +152,12 @@ SELECT
 FROM ola
 	WHERE vehicle_type = 'Prime Sedan';
 ```
-7.**Retrieve all rides where payment was made using UPI**.
+**7.Retrieve all rides where payment was made using UPI**.
 ```sql
 SELECT * FROM ola
 WHERE payment_method = 'UPI';
 ```
-8.**Find the average customer rating per vehicle type.**
+**8.Find the average customer rating per vehicle type.**
 ```sql
 SELECT 
 	vehicle_type, 
@@ -166,14 +166,14 @@ FROM ola
 GROUP BY vehicle_type
 ORDER BY avg_customer_rating DESC;
 ```
-9.**Calculate the total booking value of rides completed successfully.**
+**9.Calculate the total booking value of rides completed successfully.**
 ```sql
 SELECT 
 	SUM(booking_value) AS total_booking_value
 	FROM ola
 	WHERE booking_status = 'Success';
 ```
-10.**List all incomplete rides along with the reason.**
+**10.List all incomplete rides along with the reason.**
 ```sql
 SELECT
 	booking_id, 
@@ -184,7 +184,7 @@ WHERE incomplete_rides = 'Yes';
 
 ### MEDIUM LEVEL QUERIES
 
-1.**Count of rides canceled by customer vs driver**
+**1.Count of rides canceled by customer vs driver**
 ```sql
 SELECT 
 	COUNT(canceled_rides_by_customer) AS cancelled_by_customer, 
@@ -192,7 +192,7 @@ SELECT
 FROM ola
 WHERE booking_status <> 'Success';
 ```
-2.**Average ride distance per pickup location**
+**2.Average ride distance per pickup location**
 ```sql
 SELECT
 	pickup_location, 
@@ -201,12 +201,12 @@ FROM ola
 GROUP BY pickup_location
 ORDER BY avg_ride_distance DESC;
 ```
-3.**Get bookings with TAT (turnaround time) violations**
+**3.Get bookings with TAT (turnaround time) violations**
 ```sql
 SELECT * FROM ola
 WHERE v_tat>c_tat;
 ```
-4.**Most common payment methods by city (pickup location)**
+**4.Most common payment methods by city (pickup location)**
 ```sql
 SELECT
 	pickup_location,
@@ -216,14 +216,14 @@ FROM ola
 GROUP BY 1,2
 ORDER BY 1,2 DESC;
 ```
-5.**Get the top 3 longest rides by distance**
+**5.Get the top 3 longest rides by distance**
 ```sql
 SELECT booking_id, ride_distance
 FROM ola
 ORDER BY ride_distance DESC
 LIMIT 3;
 ```
-6.**Daily revenue trend**
+**6.Daily revenue trend**
 ```sql
 SELECT 
 	date,
@@ -233,14 +233,14 @@ WHERE booking_status = 'Success'
 GROUP BY date
 ORDER BY date ASC;
 ```
-7.**Find repeat customers (customers with more than 3 rides).**
+**7.Find repeat customers (customers with more than 3 rides).**
 ```sql
 SELECT customer_id, COUNT(*) AS ride_count
 FROM ola
 GROUP BY customer_id
 HAVING COUNT(*) > 3;
 ```
-8.**Use a window function to rank drivers by rating**
+**8.Use a window function to rank drivers by rating**
 ```sql
 SELECT 
     booking_id,
@@ -251,7 +251,7 @@ FROM ola;
 
 ### INTERMEDIATE LEVEL
 
-1.**Find the top customer per day by booking value**
+**1.Find the top customer per day by booking value**
 ```sql
 WITH daily_orders AS (
 	SELECT 
@@ -265,7 +265,7 @@ WITH daily_orders AS (
 SELECT * FROM daily_orders
 WHERE ranks = 1;
 ```
-2.**Detect unusually long rides (distance above daily mean + 2 SD)**
+**2.Detect unusually long rides (distance above daily mean + 2 SD)**
 ```sql
 WITH stats AS (
     SELECT 
@@ -281,7 +281,7 @@ FROM ola r
 JOIN stats s USING (Date)
 WHERE r.ride_distance > s.avg_distance + 2 * s.sd_distance;
 ```
-3.**Identify peak booking time windows (hourly)**
+**3.Identify peak booking time windows (hourly)**
 ```sql
 SELECT 
     EXTRACT(HOUR FROM time) AS hour_of_day,
@@ -290,7 +290,7 @@ FROM ola
 GROUP BY EXTRACT(HOUR FROM time)
 ORDER BY total_bookings DESC;
 ```
-4.**Revenue contribution: top 20% customers contributing to 80% revenue (Pareto)**
+**4.Revenue contribution: top 20% customers contributing to 80% revenue (Pareto)**
 ```sql
 WITH revenue AS (
     SELECT 
@@ -309,7 +309,7 @@ SELECT *
 FROM ordered
 WHERE cumulative_share <= 0.80;
 ```
-5.**Detect customers who frequently give low ratings (<3.5)**
+**5.Detect customers who frequently give low ratings (<3.5)**
 ```sql
 SELECT
 	customer_id,
@@ -319,7 +319,7 @@ WHERE customer_rating < 3.5
 GROUP BY 1
 ORDER BY 1 DESC;
 ```
-6.**Compare average distance between completed and canceled rides**
+**6.Compare average distance between completed and canceled rides**
 ```sql
 SELECT 
     booking_status,
@@ -328,7 +328,7 @@ FROM ola
 WHERE ride_distance IS NOT NULL
 GROUP BY booking_status;
 ```
-7.**Find rides where customer and driver rating differ significantly (>= 2 points)**
+**7.Find rides where customer and driver rating differ significantly (>= 2 points)**
 ```sql
 SELECT 
 	booking_id,
@@ -338,7 +338,7 @@ SELECT
 FROM ola
 WHERE (driver_ratings - customer_rating) >= 2;
 ```
-8.**Identify the top drop locations for each pickup location (ranked).**
+**8.Identify the top drop locations for each pickup location (ranked).**
 ```sql
 SELECT 
     pickup_location,
@@ -348,7 +348,7 @@ SELECT
 FROM ola
 GROUP BY pickup_location, drop_location;
 ```
-9.**Track customer growth month-over-month**
+**9.Track customer growth month-over-month**
 ```sql
 WITH monthly_customers AS (
     SELECT
@@ -364,7 +364,7 @@ SELECT
         OVER (ORDER BY month) AS mom_growth
 FROM monthly_customers;
 ```
-10.**ind bookings where estimated TAT was severely inaccurate (differences > 20%)**
+**10.Find bookings where estimated TAT was severely inaccurate (differences > 20%)**
 ```sql
 SELECT
 	booking_id, 
@@ -375,7 +375,7 @@ SELECT
 FROM ola
 WHERE ABS(v_tat - c_tat)/ c_tat * 100 > 20;
 ```
-11.**Determine customer lifetime value (CLTV) (total spend + avg rating weight)**
+**11.Determine customer lifetime value (CLTV) (total spend + avg rating weight)**
 ```sql
 SELECT 
     customer_id,
@@ -385,7 +385,7 @@ SELECT
 FROM ola
 GROUP BY customer_id;
 ```
-12.**dentify unusually high-value bookings using window percentile**
+**12.dentify unusually high-value bookings using window percentile**
 ```sql
 WITH ranked AS (
     SELECT
